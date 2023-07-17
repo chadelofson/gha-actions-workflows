@@ -1,0 +1,42 @@
+name: challenge
+
+on: push
+
+jobs:
+  job1:
+    name: First job with Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      - name: job - checkout
+        uses: actions/checkout@v2
+      - name: job - get date on Ubuntu
+        run: echo $(date)
+
+  job2:
+    name: Second job with Windows
+    runs-on: windows-latest
+    steps:
+      - name: windows job - checkout
+        uses: actions/checkout@v2
+      - name: windows - echo the date
+        run: Write-Output Get-Date
+
+  job3:
+    name: Third job with Mac
+    runs-on: macos-latest
+    steps:
+      - name: Mac - checkout
+        uses: actions/checkout@v2
+      - name: Mac - Echo Date
+        run: echo $(date)
+
+  job4:
+    name: Fourth Job dependent on the other job3
+    needs: [job1, job2, job3]
+    runs-on: macos-latest
+    steps:
+      - name: Job 4 - Mac - checkout
+        uses: actions/checkout@v2
+      - name: Job 4 - Mac - Echo Date
+        run: echo $(date)
+
