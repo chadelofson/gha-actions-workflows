@@ -19,7 +19,7 @@ jobs:
       - name: windows job - checkout
         uses: actions/checkout@v2
       - name: windows - echo the date
-        run: Write-Output Get-Date
+        run: Write-Output $(Get-Date)
 
   job3:
     name: Third job with Mac
